@@ -50,6 +50,15 @@ class Matrix:
         i, j = key
         self.data[(j-1) + (i-1) * self.cols] = value
 
+    def __repr__(self):
+        print('')
+        for i in range(1, self.rows+1):
+            for j in range(1,self.cols+1):
+                print("{0:.4f}".format(self[i,j]),end="   ")
+            print('')
+
+        return ''
+
 
     def __radd__(self,other):
 
