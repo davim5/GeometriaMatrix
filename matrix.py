@@ -241,8 +241,6 @@ class Matrix:
                     #     aux = res
                     #     for x in range(1, self.cols):
                     #         res[j-1,x] = aux[j,x]
-                            
-    
                     
                     if res[i,j] != 0: #Se encontrar um que não seja 0 (i = linha, j = coluna)
 
@@ -296,6 +294,6 @@ class Matrix:
             #Transformar os termos da diagonal principal para '1'
 
             #Zerar os termos acima da diagonal principal.
-
+# diosaidos
     #self.data[(j-1) + (i-1) * self.cols] = value
     #no prompt: 'python'(na pasta do arquivo), 'from matrix import Matrix', 'exit' , 'exit()'
