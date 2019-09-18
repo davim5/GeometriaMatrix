@@ -178,120 +178,161 @@ class Matrix:
             return res
 
 
-    def solve(self):
-        #checa se a matriz tem a ultima coluna "b" para que as operações sejam feitas
+    def gauss_jordan(self):
+
         if self.cols == self.rows + 1:
-            #Variável recebe a raiz passada na função
+            print('entrou primeiro if') #teste
             res = self
-            
-            #Checar se os termos abaixo da diagonal principal estão zerados
+
             for j in range(1,self.cols): #Colunas menos a ultima (1 a 3)
-                print('loop 1')
+                print('j = ',j)
+                for i in range(1,self.rows+1): #Linhas até a diagonal principal (3 a 1)
+                    print('i = ', i,' j = ',j)
+                    
+                    #Diagonal principal
+                    if(i==j):
+                        print('entrou if do i==j')
+                        if(res[i,j] != 1):
+                            print('entrou if do res[i,j] != 1')
+                            div = res[i,j] #Numero valor do numero da posição
+                            for s in range(1, self.rows + 1): #Colunas para a conta
+                                res[i,s] /= div   
+                            print(res)
+                    #Abaixo da Diagonal principal
+                    elif(i > j):
+                        if(res[i,j] != 0):
+                            print('entrou if do res[i,j] != 0')
+                            if(j==1):
+                                x = 1
+                            else:
+                                x = i - 1
+                            mult = (res[i,j] *(-1))/res[x,j]
+                            for s in range(1, self.rows + 1): #Colunas para a conta
+                                res[i,s] += res[x,j]*mult
 
-                for i in range(self.rows,j,-1): #Linhas até antes da diagonal principal (3 a 1)
-                    print('loop 2 --- ','i = ',i,' j = ',j)
-                    print('res[i,j] = ',res[i,j])
-
-                    # if(res[j,j] == 0):
-                    #     aux = res
-                    #     for x in range(1, self.cols):
-                    #         res[j-1,x] = aux[j,x]
+                            #CALCULO PRA DEIXAR IGUAL A 0
+                            print(res)
                             
-    
+            
+            for j in range(self.cols, 2,-1): #Da penultima coluna até a segunda
+                for i in range(self.rows, 1, -1): #Linhas acima da diagonal principal
                     
-                    if res[i,j] != 0: #Se encontrar um que não seja 0 (i = linha, j = coluna)
-
-                        for k in range(1, self.rows + 1): #k = variavel pra checar outras linhas da mesma coluna 'j'
-                            print('loop 3 --- k = ',k)
-                            print('res[k,j] = ',res[k,j])
-                            print(res.data,'\n')
-
-                            al = k
-
-                            if(res[i,j-1] == 0):
-                                print('Leu que o antes é zero')
-                                while(res[al,j-1] != 0):
-                                    al += 1
-                                    print(al)
-
-                            print(al)
-                            if res[i,j] == res[al,j] and i != al and res[i,j] != 0: #Se for igual e não for a mesma linha
-                                print('al = ', al)
-
-                                for s in range (1,self.cols+1): #s = variavel pra pegar cada elemento da linha 'i' e subtrair com a linha 'k' até chegar na diagonal
-                                    print('loop 4 == --- s = ',s)
-                                    res[i,s] -= res [al,s]
-                                    #resultado deve ser zero
-                                print('\n')            
-                            elif res[i,j] < res[al,j] and res[i,j] != 0: #Se lemento da outra linha for maior
-                                print('al = ', al)
-                                if res[al,j]%res[i,j] == 0:
-                                    div = res[al,j]/res[i,j]
-                                    for s in range(1,self.cols+1):
-                                        print('loop 4 < --- s = ',s)
-                                        res[i,s] -= res[al,s]/div
-                                    print('\n')
-                            elif res[i,j] > res[al,j]: #Se lemento da outra linha for maior
-                                print('al = ', al)
-                                if res[i,j]%res[al,j] == 0:
-                                    mult = res[i,j]/res[al,j]
-                                    for s in range(1,self.cols+1):
-                                        print('loop 4 > --- s = ',s)
-                                        res[i,s] -= res[al,j]*mult
-                                    print('\n')
-            for j in range(1,self.cols): #Colunas menos a ultima (1 a 3)
-                print('loop 1')
-
-                for i in range(self.rows,j,-1): #Linhas até antes da diagonal principal (3 a 1)
-                    print('loop 2 --- ','i = ',i,' j = ',j)
-                    print('res[i,j] = ',res[i,j])
-
-                    # if(res[j,j] == 0):
-                    #     aux = res
-                    #     for x in range(1, self.cols):
-                    #         res[j-1,x] = aux[j,x]
-                    
-                    if res[i,j] != 0: #Se encontrar um que não seja 0 (i = linha, j = coluna)
-
-                        for k in range(1, self.rows + 1): #k = variavel pra checar outras linhas da mesma coluna 'j'
-                            print('loop 3 --- k = ',k)
-                            print('res[k,j] = ',res[k,j])
-                            print(res.data,'\n')
-
-                            al = k
-
-                            if(res[i,j-1] == 0):
-                                print('Leu que o antes é zero')
-                                while(res[al,j-1] != 0):
-                                    al += 1
-                                    print(al)
-
-                            print(al)
-                            if res[i,j] == res[al,j] and i != al and res[i,j] != 0: #Se for igual e não for a mesma linha
-                                print('al = ', al)
-
-                                for s in range (1,self.cols+1): #s = variavel pra pegar cada elemento da linha 'i' e subtrair com a linha 'k' até chegar na diagonal
-                                    print('loop 4 == --- s = ',s)
-                                    res[i,s] -= res [al,s]
-                                    #resultado deve ser zero
-                                print('\n')            
-                            elif res[i,j] < res[al,j] and res[i,j] != 0: #Se lemento da outra linha for maior
-                                print('al = ', al)
-                                if res[al,j]%res[i,j] == 0:
-                                    div = res[al,j]/res[i,j]
-                                    for s in range(1,self.cols+1):
-                                        print('loop 4 < --- s = ',s)
-                                        res[i,s] -= res[al,s]/div
-                                    print('\n')
-                            elif res[i,j] > res[al,j]: #Se lemento da outra linha for maior
-                                print('al = ', al)
-                                if res[i,j]%res[al,j] == 0:
-                                    mult = res[i,j]/res[al,j]
-                                    for s in range(1,self.cols+1):
-                                        print('loop 4 > --- s = ',s)
-                                        res[i,s] -= res[al,j]*mult
-                                    print('\n')
+                    #Acima da diagonal principal
+                    if(j > i):
+                        #CALCULO PRA DEIXAR IGUAL A 0
+                        res
         return res
+
+    # def solve(self):
+    #     #checa se a matriz tem a ultima coluna "b" para que as operações sejam feitas
+    #     if self.cols == self.rows + 1:
+    #         #Variável recebe a raiz passada na função
+    #         res = self
+    #         #Checar se os termos abaixo da diagonal principal estão zerados
+    #         for j in range(1,self.cols): #Colunas menos a ultima (1 a 3)
+    #             print('loop 1')
+
+    #             for i in range(self.rows,j,-1): #Linhas até antes da diagonal principal (3 a 1)
+    #                 print('loop 2 --- ','i = ',i,' j = ',j)
+    #                 print('res[i,j] = ',res[i,j])
+
+    #                 # if(res[j,j] == 0):
+    #                 #     aux = res
+    #                 #     for x in range(1, self.cols):
+    #                 #         res[j-1,x] = aux[j,x]
+
+    #                 if res[i,j] != 0: #Se encontrar um que não seja 0 (i = linha, j = coluna)
+
+    #                     for k in range(1, self.rows + 1): #k = variavel pra checar outras linhas da mesma coluna 'j'
+    #                         print('loop 3 --- k = ',k)
+    #                         print('res[k,j] = ',res[k,j])
+    #                         print(res.data,'\n')
+
+    #                         al = k
+
+    #                         if(res[i,j-1] == 0):
+    #                             print('Leu que o antes é zero')
+    #                             while(res[al,j-1] != 0):
+    #                                 al += 1
+    #                                 print(al)
+
+    #                         print(al)
+    #                         if res[i,j] == res[al,j] and i != al and res[i,j] != 0: #Se for igual e não for a mesma linha
+    #                             print('al = ', al)
+
+    #                             for s in range (1,self.cols+1): #s = variavel pra pegar cada elemento da linha 'i' e subtrair com a linha 'k' até chegar na diagonal
+    #                                 print('loop 4 == --- s = ',s)
+    #                                 res[i,s] -= res [al,s]
+    #                                 #resultado deve ser zero
+    #                             print('\n')            
+    #                         elif res[i,j] < res[al,j] and res[i,j] != 0: #Se lemento da outra linha for maior
+    #                             print('al = ', al)
+    #                             if res[al,j]%res[i,j] == 0:
+    #                                 div = res[al,j]/res[i,j]
+    #                                 for s in range(1,self.cols+1):
+    #                                     print('loop 4 < --- s = ',s)
+    #                                     res[i,s] -= res[al,s]/div
+    #                                 print('\n')
+    #                         elif res[i,j] > res[al,j]: #Se lemento da outra linha for maior
+    #                             print('al = ', al)
+    #                             if res[i,j]%res[al,j] == 0:
+    #                                 mult = res[i,j]/res[al,j]
+    #                                 for s in range(1,self.cols+1):
+    #                                     print('loop 4 > --- s = ',s)
+    #                                     res[i,s] -= res[al,j]*mult
+    #                                 print('\n')
+    #         for j in range(1,self.cols): #Colunas menos a ultima (1 a 3)
+    #             print('loop 1')
+
+    #             for i in range(self.rows,j,-1): #Linhas até antes da diagonal principal (3 a 1)
+    #                 print('loop 2 --- ','i = ',i,' j = ',j)
+    #                 print('res[i,j] = ',res[i,j])
+
+    #                 # if(res[j,j] == 0):
+    #                 #     aux = res
+    #                 #     for x in range(1, self.cols):
+    #                 #         res[j-1,x] = aux[j,x]
+    #                 if res[i,j] != 0: #Se encontrar um que não seja 0 (i = linha, j = coluna)
+
+    #                     for k in range(1, self.rows + 1): #k = variavel pra checar outras linhas da mesma coluna 'j'
+    #                         print('loop 3 --- k = ',k)
+    #                         print('res[k,j] = ',res[k,j])
+    #                         print(res.data,'\n')
+
+    #                         al = k
+
+    #                         if(res[i,j-1] == 0):
+    #                             print('Leu que o antes é zero')
+    #                             while(res[al,j-1] != 0):
+    #                                 al += 1
+    #                                 print(al)
+
+    #                         print(al)
+    #                         if res[i,j] == res[al,j] and i != al and res[i,j] != 0: #Se for igual e não for a mesma linha
+    #                             print('al = ', al)
+
+    #                             for s in range (1,self.cols+1): #s = variavel pra pegar cada elemento da linha 'i' e subtrair com a linha 'k' até chegar na diagonal
+    #                                 print('loop 4 == --- s = ',s)
+    #                                 res[i,s] -= res [al,s]
+    #                                 #resultado deve ser zero
+    #                             print('\n')            
+    #                         elif res[i,j] < res[al,j] and res[i,j] != 0: #Se lemento da outra linha for maior
+    #                             print('al = ', al)
+    #                             if res[al,j]%res[i,j] == 0:
+    #                                 div = res[al,j]/res[i,j]
+    #                                 for s in range(1,self.cols+1):
+    #                                     print('loop 4 < --- s = ',s)
+    #                                     res[i,s] -= res[al,s]/div
+    #                                 print('\n')
+    #                         elif res[i,j] > res[al,j]: #Se lemento da outra linha for maior
+    #                             print('al = ', al)
+    #                             if res[i,j]%res[al,j] == 0:
+    #                                 mult = res[i,j]/res[al,j]
+    #                                 for s in range(1,self.cols+1):
+    #                                     print('loop 4 > --- s = ',s)
+    #                                     res[i,s] -= res[al,j]*mult
+    #                                 print('\n')
+    #     return res
 
             #Zerar termos abaixo da diagonal principal OOOOK
 
