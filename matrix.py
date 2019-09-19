@@ -315,6 +315,36 @@ class Matrix:
             print('Matriz inserida não é quadrada')     
 
 
+  
+        
+        
 
-    #self.data[(j-1) + (i-1) * self.cols] = valuee=
-    #no prompt: 'python'(na pasta do arquivo), 'from matrix import Matrix', 'exit' , 'exit()'
+
+
+
+
+        #self.data[(j-1) + (i-1) * self.cols] = valuee=
+        #no prompt: 'python'(na pasta do arquivo), 'from matrix import Matrix', 'exit' , 'exit()'
+
+
+f = open("pack6/packs/pack6/ex01.m-ext.m","r")
+x = f.readline().split()
+print(x)
+i = int(x[0])
+j = int(x[1])
+
+a = Matrix(i,j)
+print('i = ', i,' j = ', j)
+
+for z in range(1,i*j+1):
+    x = f.readline().split()
+    i = int(x[0])
+    j = int(x[1])
+    n = int(x[2])
+    a[i,j] = n
+    print('i = ', i,' j = ', j)
+    
+print(a)
+b = a.gauss_jordan()
+print(b)
+
