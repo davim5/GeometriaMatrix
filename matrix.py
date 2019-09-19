@@ -195,32 +195,40 @@ class Matrix:
                         if(res[i,j] != 1):
                             print('entrou if do res[i,j] != 1')
                             div = res[i,j] #Numero valor do numero da posição
-                            for s in range(1, self.rows + 1): #Colunas para a conta
+                            for s in range(1, self.cols + 1): #Colunas para a conta
                                 res[i,s] /= div   
                             print(res)
                     #Abaixo da Diagonal principal
                     elif(i > j):
                         if(res[i,j] != 0):
                             print('entrou if do res[i,j] != 0')
-                            if(j==1):
-                                x = 1
-                            else:
-                                x = i - 1
-                            mult = (res[i,j] *(-1))/res[x,j]
-                            for s in range(1, self.rows + 1): #Colunas para a conta
-                                res[i,s] += res[x,j]*mult
-
                             #CALCULO PRA DEIXAR IGUAL A 0
+                            if(j==1):
+                                x = 1 #variável para a linha que será utilizada para somar com a linha 'i'
+                            else: 
+                                x = i - 1
+                            mult = (res[i,j] *(-1))/res[x,j] #multiplicador para linha que irá somar e zerar o elemento [i,j]
+                            for s in range(1, self.cols + 1): #'s' colunas para somar cada elemento da linha
+                                res[i,s] += res[x,s]*mult
                             print(res)
                             
-            
-            for j in range(self.cols, 2,-1): #Da penultima coluna até a segunda
-                for i in range(self.rows, 1, -1): #Linhas acima da diagonal principal
+            print("Voltando acima da diagonal agora")
+            for j in range(self.cols - 1, 1,-1): #Da penultima coluna até a segunda
+                print('j = ',j)
+                for i in range(self.rows - 1, 0, -1): #Linhas acima da diagonal principal
+                    print('i = ', i,' j = ',j)
                     
                     #Acima da diagonal principal
                     if(j > i):
-                        #CALCULO PRA DEIXAR IGUAL A 0
-                        res
+                        if(res[i,j] != 0):
+                            print('entrou if do res[i,j] != 0')
+                            #CALCULO PRA DEIXAR IGUAL A 0
+                            x = j
+                            mult = (res[i,j] *(-1))/res[x,j] #multiplicador para linha que irá somar e zerar o elemento [i,j]
+                            for s in range(1, self.cols + 1): #'s' colunas para somar cada elemento da linha
+                                res[i,s] += res[x,s]*mult
+                            print(res)
+                        
         return res
 
     # def solve(self):
