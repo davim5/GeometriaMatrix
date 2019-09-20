@@ -35,7 +35,7 @@ class Matrix:
 
     #Método para retornar o elemento(i,j) da matriz
     def __getitem__(self, key):
-        
+        try:
             i, j = key
             if self.rows < 0:
                 raise Exception('Numero de linhas não é compatível')
@@ -43,12 +43,18 @@ class Matrix:
                 raise Exception('Numero de colunas não é compatível')
             #print(key)
             return self.data[(j-1) + (i-1) * self.cols]
+        except IndexError:
+            print('Não existe a linha/coluna nessa matriz')
         
 
     #Método para definir um dos valores da matriz
     def __setitem__(self, key, value):
-        i, j = key
-        self.data[(j-1) + (i-1) * self.cols] = value
+        try:
+            i, j = key
+            self.data[(j-1) + (i-1) * self.cols] = value
+        except IndexError:
+            print("Não existe a linha/coluna nessa matriz")
+
 
     def __repr__(self):
         print('')
@@ -109,9 +115,10 @@ class Matrix:
 
             return 
 
-                
-
         return res
+
+    def __rsub__(self, other):
+        return self.__sub__(other)
 
     def __mul__(self,other):
         if type(other) == Matrix:
@@ -133,6 +140,9 @@ class Matrix:
             print('Elemento não compatível para operação!')
 
             return 
+
+    def __rmul__(self, other):
+        return self.__mul__(other)        
 
     def __truediv__(self,other):
         if type(other) == Matrix:
@@ -162,12 +172,18 @@ class Matrix:
 
             return 
 
+    def __rtruediv__(self, other):
+        return self.__truediv__(other)
+
 #Cij += Aik * Bkj
 
     def dot(self,other):
-        if self.cols != other.rows:
-            print('Número de linhas e colunas é incompatível para multiplicação!')
-            return
+        try:
+            if self.cols != other.rows:
+                raise Exception('Número de linhas e colunas é incompatível para multiplicação!')
+        except Exception:
+            raise
+
         else:
             res = Matrix(self.rows,other.cols)
 
@@ -314,37 +330,30 @@ class Matrix:
         else:
             print('Matriz inserida não é quadrada')     
 
-
-  
-        
-        
-
-
-
-
-
         #self.data[(j-1) + (i-1) * self.cols] = valuee=
         #no prompt: 'python'(na pasta do arquivo), 'from matrix import Matrix', 'exit' , 'exit()'
 
 
-f = open("pack6/packs/pack6/ex01.m-ext.m","r")
-x = f.readline().split()
-print(x)
-i = int(x[0])
-j = int(x[1])
 
-a = Matrix(i,j)
-print('i = ', i,' j = ', j)
 
-for z in range(1,i*j+1):
-    x = f.readline().split()
-    i = int(x[0])
-    j = int(x[1])
-    n = int(x[2])
-    a[i,j] = n
-    print('i = ', i,' j = ', j)
+# f = open("pack6/packs/pack6/ex01.m-ext.m","r")
+# x = f.readline().split()
+# print(x)
+# i = int(x[0])
+# j = int(x[1])
+
+# a = Matrix(i,j)
+# print('i = ', i,' j = ', j)
+
+# for z in range(1,i*j+1):
+#     x = f.readline().split()
+#     i = int(x[0])
+#     j = int(x[1])
+#     n = int(x[2])
+#     a[i,j] = n
+#     print('i = ', i,' j = ', j)
     
-print(a)
-b = a.gauss_jordan()
-print(b)
+# print(a)
+# b = a.gauss_jordan()
+# print(b)
 
