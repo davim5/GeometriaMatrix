@@ -232,7 +232,7 @@ class Matrix:
                             if(j==1):
                                 x = 1 #variável para a linha que será utilizada para somar com a linha 'i'
                             else: 
-                                x = i - 1
+                                x = j
                             mult = (res[i,j] *(-1))/res[x,j] #multiplicador para linha que irá somar e zerar o elemento [i,j]
                             for s in range(1, self.cols + 1): #'s' colunas para somar cada elemento da linha
                                 res[i,s] += res[x,s]*mult
@@ -336,24 +336,24 @@ class Matrix:
 
 
 
-# f = open("pack6/packs/pack6/ex01.m-ext.m","r")
-# x = f.readline().split()
-# print(x)
-# i = int(x[0])
-# j = int(x[1])
+f = open("pack6/packs/pack6/ex01.m-ext.m","r")
+x = f.readline().split()
+print(x)
+i = int(x[0])
+j = int(x[1])
 
-# a = Matrix(i,j)
-# print('i = ', i,' j = ', j)
+a = Matrix(i,j)
+print('i = ', i,' j = ', j)
 
-# for z in range(1,i*j+1):
-#     x = f.readline().split()
-#     i = int(x[0])
-#     j = int(x[1])
-#     n = int(x[2])
-#     a[i,j] = n
-#     print('i = ', i,' j = ', j)
+for z in range(1,i*j+1):
+    x = f.readline().split()
+    i = int(x[0])
+    j = int(x[1])
+    n = int(x[2])
+    a[i,j] = n
+    print('i = ', i,' j = ', j)
     
-# print(a)
-# b = a.gauss_jordan()
-# print(b)
+print(a)
+b = a.gauss_jordan()
+print(b)
 
