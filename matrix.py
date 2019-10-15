@@ -207,27 +207,36 @@ class Matrix:
     def gauss_jordan(self):
 
         if self.cols == self.rows + 1:
-            print('entrou primeiro if') #teste
+            # print('entrou primeiro if') #teste
             res = self
 
             for j in range(1,self.cols): #Colunas menos a ultima (1 a 3)
-                print('j = ',j)
+                # print('j = ',j)
                 for i in range(1,self.rows+1): #Linhas até a diagonal principal (3 a 1)
-                    print('i = ', i,' j = ',j)
-                    
+                    # print('i = ', i,' j = ',j)
+                    if(res[1,1]==0):
+                        # print('entrou')
+                        g = 2
+                        while (res[g,1] == 0):
+                            g += 1
+                        for s in range(1, self.cols + 1):
+                            aux = res[i,s]
+                            res[i,s] = res[g,s]
+                            res[g,s] = aux  
+                        # print(res)          
                     #Diagonal principal
                     if(i==j):
-                        print('entrou if do i==j')
+                        # print('entrou if do i==j')
                         if(res[i,j] != 1):
-                            print('entrou if do res[i,j] != 1')
+                            # print('entrou if do res[i,j] != 1')
                             div = res[i,j] #Numero valor do numero da posição
                             for s in range(1, self.cols + 1): #Colunas para a conta
                                 res[i,s] /= div   
-                            print(res)
+                            # print(res)
                     #Abaixo da Diagonal principal
                     elif(i > j):
                         if(res[i,j] != 0):
-                            print('entrou if do res[i,j] != 0')
+                            # print('entrou if do res[i,j] != 0')
                             #CALCULO PRA DEIXAR IGUAL A 0
                             if(j==1):
                                 x = 1 #variável para a linha que será utilizada para somar com a linha 'i'
@@ -236,25 +245,83 @@ class Matrix:
                             mult = (res[i,j] *(-1))/res[x,j] #multiplicador para linha que irá somar e zerar o elemento [i,j]
                             for s in range(1, self.cols + 1): #'s' colunas para somar cada elemento da linha
                                 res[i,s] += res[x,s]*mult
-                            print(res)
+                            # print(res)
                             
-            print("Voltando acima da diagonal agora")
+            # print("Voltando acima da diagonal agora")
             for j in range(self.cols - 1, 1,-1): #Da penultima coluna até a segunda
-                print('j = ',j)
+                # print('j = ',j)
                 for i in range(self.rows - 1, 0, -1): #Linhas acima da diagonal principal
-                    print('i = ', i,' j = ',j)
+                    # print('i = ', i,' j = ',j)
                     
                     #Acima da diagonal principal
                     if(j > i):
                         if(res[i,j] != 0):
-                            print('entrou if do res[i,j] != 0')
+                            # print('entrou if do res[i,j] != 0')
                             #CALCULO PRA DEIXAR IGUAL A 0
                             x = j
                             mult = (res[i,j] *(-1))/res[x,j] #multiplicador para linha que irá somar e zerar o elemento [i,j]
                             for s in range(1, self.cols + 1): #'s' colunas para somar cada elemento da linha
                                 res[i,s] += res[x,s]*mult
-                            print(res)
-                        
+                            # print(res)
+        
+        if self.cols == self.rows:
+            # print('entrou primeiro if') #teste
+            res = self
+
+            for j in range(1,self.cols+1): #Colunas menos a ultima (1 a 3)
+                # print('j = ',j)
+                for i in range(1,self.rows+1): #Linhas até a diagonal principal (3 a 1)
+                    # print('i = ', i,' j = ',j)
+                    if(res[1,1]==0):
+                        # print('entrou')
+                        g = 2
+                        while (res[g,1] == 0):
+                            g += 1
+                        for s in range(1, self.cols + 1):
+                            aux = res[i,s]
+                            res[i,s] = res[g,s]
+                            res[g,s] = aux  
+                        # print(res)          
+                    #Diagonal principal
+                    if(i==j):
+                        # print('entrou if do i==j')
+                        if(res[i,j] != 1):
+                            # print('entrou if do res[i,j] != 1')
+                            div = res[i,j] #Numero valor do numero da posição
+                            for s in range(1, self.cols + 1): #Colunas para a conta
+                                res[i,s] /= div   
+                            # print(res)
+                    #Abaixo da Diagonal principal
+                    elif(i > j):
+                        if(res[i,j] != 0):
+                            # print('entrou if do res[i,j] != 0')
+                            #CALCULO PRA DEIXAR IGUAL A 0
+                            if(j==1):
+                                x = 1 #variável para a linha que será utilizada para somar com a linha 'i'
+                            else: 
+                                x = j
+                            mult = (res[i,j] *(-1))/res[x,j] #multiplicador para linha que irá somar e zerar o elemento [i,j]
+                            for s in range(1, self.cols + 1): #'s' colunas para somar cada elemento da linha
+                                res[i,s] += res[x,s]*mult
+                            # print(res)
+                            
+            # print("Voltando acima da diagonal agora")
+            for j in range(self.cols, 1,-1): #Da penultima coluna até a segunda
+                # print('j = ',j)
+                for i in range(self.rows - 1, 0, -1): #Linhas acima da diagonal principal
+                    # print('i = ', i,' j = ',j)
+                    
+                    #Acima da diagonal principal
+                    if(j > i):
+                        if(res[i,j] != 0):
+                            # print('entrou if do res[i,j] != 0')
+                            #CALCULO PRA DEIXAR IGUAL A 0
+                            x = j
+                            mult = (res[i,j] *(-1))/res[x,j] #multiplicador para linha que irá somar e zerar o elemento [i,j]
+                            for s in range(1, self.cols + 1): #'s' colunas para somar cada elemento da linha
+                                res[i,s] += res[x,s]*mult
+                            # print(res)
+        
         return res
 
     def inverse(self):
@@ -330,30 +397,117 @@ class Matrix:
         else:
             print('Matriz inserida não é quadrada')     
 
+    def LU(self):
+        
+        res = self
+        L = Matrix(res.rows,res.cols)
+        U = Matrix(res.rows,res.cols)
+
+        if self.cols == self.rows:
+            # print('entrou primeiro if') #teste
+            res = self
+
+            for j in range(1,self.cols+1): #Colunas menos a ultima (1 a 3)
+                # print('j = ',j)
+                for i in range(1,self.rows+1): #Linhas até a diagonal principal (3 a 1)
+                    # print('i = ', i,' j = ',j)
+                    if(res[1,1]==0):
+                        # print('entrou')
+                        g = 2
+                        while (res[g,1] == 0):
+                            g += 1
+                        for s in range(1, self.cols + 1):
+                            aux = res[i,s]
+                            res[i,s] = res[g,s]
+                            res[g,s] = aux  
+                        # print(res)          
+                    #Diagonal principal
+                    if(i==j):
+                        # print('entrou if do i==j')
+                        if(res[i,j] != 1):
+                            # print('entrou if do res[i,j] != 1')
+                            div = res[i,j] #Numero valor do numero da posição
+                            L[i,j] = div
+                            for s in range(1, self.cols + 1): #Colunas para a conta
+                                res[i,s] /= div   
+                            # print(res)
+                        else:
+                            L[i,j] = 1
+                    #Abaixo da Diagonal principal
+                    elif(i > j):
+                        if(res[i,j] != 0):
+                            # print('entrou if do res[i,j] != 0')
+                            #CALCULO PRA DEIXAR IGUAL A 0
+                            if(j==1):
+                                x = 1 #variável para a linha que será utilizada para somar com a linha 'i'
+                            else: 
+                                x = j
+                            mult = (res[i,j] *(-1))/res[x,j] #multiplicador para linha que irá somar e zerar o elemento [i,j]
+                            L[i,j] = mult*-1
+                            for s in range(1, self.cols + 1): #'s' colunas para somar cada elemento da linha
+                                res[i,s] += res[x,s]*mult
+                            # print(res)
+                print(L)
+                U = res
+            # print("Voltando acima da diagonal agora")
+            for j in range(self.cols, 1,-1): #Da penultima coluna até a segunda
+                # print('j = ',j)
+                for i in range(self.rows - 1, 0, -1): #Linhas acima da diagonal principal
+                    # print('i = ', i,' j = ',j)
+                    
+                    #Acima da diagonal principal
+                    if(j > i):
+                        if(res[i,j] != 0):
+                            # print('entrou if do res[i,j] != 0')
+                            #CALCULO PRA DEIXAR IGUAL A 0
+                            x = j
+                            mult = (res[i,j] *(-1))/res[x,j] #multiplicador para linha que irá somar e zerar o elemento [i,j]
+                            U[i,j] = mult*-1
+                            for s in range(1, self.cols + 1): #'s' colunas para somar cada elemento da linha
+                                res[i,s] += res[x,s]*mult
+                            # print(res)
+                print(U)
+        
+
         #self.data[(j-1) + (i-1) * self.cols] = valuee=
         #no prompt: 'python'(na pasta do arquivo), 'from matrix import Matrix', 'exit' , 'exit()'
 
 
+# **** PRINT DOS TEMPOS NA TELA **** 
 
+# import time
 
-f = open("pack6/packs/pack6/ex01.m-ext.m","r")
-x = f.readline().split()
-print(x)
-i = int(x[0])
-j = int(x[1])
+# # for q in range(1,21):
+#     # nomearquivo = "pack6/packs/pack6/ex0"+str(q)+".m-ext.m"
+# nomearquivo = "pack6/packs/pack6/ex020.m-ext.m"
 
-a = Matrix(i,j)
-print('i = ', i,' j = ', j)
+# f = open(nomearquivo,"r") #TIRAR OS COM766                                              y ENTARIOS DO ARQUIVO ANTES DE PASSAR
+# x = f.readline().split()
+# print('Questão 20 : ',x, 'file: ',nomearquivo)
+# i = int(x[0])
+# j = int(x[1])
 
-for z in range(1,i*j+1):
-    x = f.readline().split()
-    i = int(x[0])
-    j = int(x[1])
-    n = int(x[2])
-    a[i,j] = n
-    print('i = ', i,' j = ', j)
+# a = Matrix(i,j)
+# # print('i = ', i,' j = ', j)
+
+# for z in range(1,i*j+1):
+#     x = f.readline().split()
+#     i = int(x[0])
+#     j = int(x[1])
+#     n = int(x[2])
+#     a[i,j] = n
+#     # print('i = ', i,' j = ', j)
     
-print(a)
-b = a.gauss_jordan()
-print(b)
+# start_time = time.time()
+# # print(a)
+# b = a.gauss_jordan()
+# # print(b)
+# end_time = time.time() - start_time
+
+# if(end_time > 60):
+#     end_timem = end_time/60
+# else:
+#     end_timem = 0
+
+# print(end_time,'Segundos ou ',end_timem,' Minutos')
 
