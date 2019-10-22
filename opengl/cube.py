@@ -5,6 +5,7 @@ from OpenGL.GLU import *
 from shape2d import Square
 from shape2d import Rectangle
 from shape2d import Triangle
+from shape2d import Circle
 
 # def cube():
 #   glBegin(GL_LINES)
@@ -22,6 +23,7 @@ if __name__ == "__main__":
   square = Square(-10,0,10)
   rectangle = Rectangle(-10,0,20,10)
   triangle = Triangle(-10,0,10,10)
+  circle = Circle(-10,0,10,20)
 
   while True:
     for event in pygame.event.get():
@@ -34,7 +36,8 @@ if __name__ == "__main__":
     
     # square.draw()
     # rectangle.draw()
-    triangle.draw()
+    # triangle.draw()
+    circle.draw()
 
     pygame.display.flip()
     pygame.time.wait(10)
