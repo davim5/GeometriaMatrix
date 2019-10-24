@@ -8,6 +8,7 @@ from shape2d import Triangle
 from shape2d import Circle
 from shape2d import Line
 from shape3d import Reta
+from shape3d import Circle3D
 
 # def cube():
 #   glBegin(GL_LINES)
@@ -29,6 +30,7 @@ if __name__ == "__main__":
   line = Line((0,0),(5,5))
   reta = Reta((0,0,0,),(3,3,3))
   reta2 = Reta((4,4,4),(2,5,3))
+  circle3d = Circle3D(-10,0,-10,10,10)
 
   while True:
     for event in pygame.event.get():
@@ -43,9 +45,16 @@ if __name__ == "__main__":
     # rectangle.draw()
     # triangle.draw()
     #circle.draw()
+<<<<<<< Updated upstream
     #line.draw()
-    reta.draw()
-    reta2.draw()
+    #reta.draw()
+    #reta2.draw()
+    circle3d.draw()
+=======
+    line.draw()
+    #reta.draw()
+    #reta2.draw()
+>>>>>>> Stashed changes
 
     pygame.display.flip()
     pygame.time.wait(10)
