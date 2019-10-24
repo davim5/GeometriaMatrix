@@ -7,6 +7,7 @@ from shape2d import Rectangle
 from shape2d import Triangle
 from shape2d import Circle
 from shape2d import Line
+from shape3d import Reta
 
 # def cube():
 #   glBegin(GL_LINES)
@@ -26,6 +27,8 @@ if __name__ == "__main__":
   triangle = Triangle(-10,0,10,10)
   circle = Circle(-10,0,10,10)
   line = Line((0,0),(5,5))
+  reta = Reta((0,0,0,),(3,3,3))
+  reta2 = Reta((4,4,4),(2,5,3))
 
   while True:
     for event in pygame.event.get():
@@ -40,7 +43,9 @@ if __name__ == "__main__":
     # rectangle.draw()
     # triangle.draw()
     #circle.draw()
-    line.draw()
+    #line.draw()
+    reta.draw()
+    reta2.draw()
 
     pygame.display.flip()
     pygame.time.wait(10)
