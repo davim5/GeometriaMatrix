@@ -45,10 +45,19 @@ if __name__ == "__main__":
     # rectangle.draw()
     # triangle.draw()
     #circle.draw()
+<<<<<<< Updated upstream
     #line.draw()
     #reta.draw()
     #reta2.draw()
     circle3d.draw()
+<<<<<<< HEAD
+=======
+=======
+    line.draw()
+    #reta.draw()
+    #reta2.draw()
+>>>>>>> Stashed changes
+>>>>>>> master
 
     pygame.display.flip()
     pygame.time.wait(10)
