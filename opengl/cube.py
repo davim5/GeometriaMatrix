@@ -9,6 +9,8 @@ from shape2d import Circle
 from shape2d import Line
 from shape3d import Reta
 from shape3d import Circle3D
+from shape3d import Paralelepipedo3D
+from shape3d import Pyramid3D
 
 # def cube():
 #   glBegin(GL_LINES)
@@ -31,6 +33,8 @@ if __name__ == "__main__":
   reta = Reta((0,0,0,),(3,3,3))
   reta2 = Reta((4,4,4),(2,5,3))
   circle3d = Circle3D(-10,0,-10,10,10)
+  paralelepipedo3D = Paralelepipedo3D(-5,-5,-5,10,10,10)
+  pyramid3D = Pyramid3D(-5,-5,-5,10,10,10)
 
   while True:
     for event in pygame.event.get():
@@ -43,18 +47,22 @@ if __name__ == "__main__":
     
     # square.draw()
     # square.drawTrans2d(0.1,0)
-    square.drawScale2d(1.005)
-    # square.drawRot2d(0.1)
+    #square.drawRot2d(0.1)
     # rectangle.draw()
     # triangle.draw()
     #circle.draw()
     #line.draw()
     #reta.draw()
     #reta2.draw()
-    # circle3d.draw()
+    #circle3d.draw()
 
     # line.draw()
     #reta.draw()
     #reta2.draw()
+    #paralelepipedo3D.draw()
+    pyramid3D.draw()
+
+    glRotate(0.4, 1, 1 ,1)
+
     pygame.display.flip()
     pygame.time.wait(10)
