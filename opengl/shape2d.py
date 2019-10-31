@@ -186,15 +186,11 @@ class Circle():
     twoPi = 2*3.1415
   
     for i in range (1,self.triangles+2):
-      sx = (self.radius * math.cos(i *  twoPi / self.triangles))
-      sy = (self.radius * math.sin(i * twoPi / self.triangles))
-
-      X =  (sx - self.x)*math.cos(self.angle) - (sy - self.y)*math.sin(self.angle)
-      Y =  (sx - self.x)*math.sin(self.angle) + (sy - self.y)*math.cos(self.angle)
-      glVertex2f((self.x + X) - self.radius, (self.y + Y) - self.radius)
+      glVertex2f((self.radius * math.cos(i *  twoPi / self.triangles)),(self.radius * math.sin(i * twoPi / self.triangles)))
     
     glEnd()
-    
+
+
   def drawTrans2d(self,tx,ty):
     self.x += tx
     self.y += ty
