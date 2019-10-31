@@ -55,6 +55,18 @@ class Square():
 
     glEnd()
 
+  def drawTrans2d(self,tx,ty):
+    self.x += tx
+    self.y += ty
+    self.points = self._create_points()  
+    self.draw()
+
+  def drawsScale2d(self,tx,ty):
+    self.x *= tx
+    self.y *= ty
+    self.points = self._create_points()  
+    self.draw()
+
 # Classe do retangulo
 class Rectangle():
   def __init__(self,x,y,width,height):

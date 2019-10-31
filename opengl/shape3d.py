@@ -21,7 +21,6 @@ class Reta():
         glVertex3fv(self.points[0])
         glVertex3fv(self.points[1])
 
-<<<<<<< HEAD
         glEnd()
 
 # Classe do Triangulo
@@ -122,36 +121,42 @@ class Circle3D():
         glEnd()
 
 
-=======
-    glEnd()
-
-class Circle3D():
-  def __init__(self,x,y,z,radius,triangles):
+    
+class Cube():
+  def __init__(self,x,y,z,lado):
     self.x = x
     self.y = y
     self.z = z
-    self.radius = radius
-    self.points = self._create_points()
-    self.triangles = triangles
+    self.lado = lado
+    self.points = self.createPoints()
+  
+  def createPoints(self):
+    point_list = []
+    point_list.append(((self.x + self.lado),(self.y + self.lado),(self.z + self.lado))) #0
+    point_list.append(((self.x - self.lado),(self.y + self.lado),(self.z + self.lado))) #1
+    point_list.append(((self.x + self.lado),(self.y + self.lado),(self.z - self.lado))) #2
+    point_list.append(((self.x - self.lado),(self.y + self.lado),(self.z - self.lado))) #3
+    point_list.append(((self.x + self.lado),(self.y - self.lado),(self.z + self.lado))) #4
+    point_list.append(((self.x - self.lado),(self.y - self.lado),(self.z + self.lado))) #5
+    point_list.append(((self.x + self.lado),(self.y - self.lado),(self.z - self.lado))) #6
+    point_list.append(((self.x - self.lado),(self.y - self.lado),(self.z - self.lado))) #7
+    return point_list
 
 
-  def _create_points(self):
-    points_list = []
-    points_list.append((self.x,self.y, self.z))
-    points_list.append((self.x + self.radius,self.y, self.z))
-    # points_list.append((self.x + self.radius/2,self.y + self.height))
-    return points_list
 
   def draw(self):
-    glBegin(GL_TRIANGLE_FAN)
+    glBegin(GL_TRIANGLES)
 
-    glColor(0.0,0.0,1.0)
+    glColor(0.0,1.0,0.0)
     glVertex3fv(self.points[0])
-    i=0
-    twoPi = 2*3.1415
-    for i in range (1,self.triangles+2):
-      glVertex3f((self.radius * math.cos(i *  twoPi / self.triangles)),(self.radius * math.sin(i * twoPi / self.triangles)), self.z)
-    
+    glVertex3fv(self.points[1])
+    glVertex3fv(self.points[2])
+
+    glColor(1.0,0.0,0.0)
+    glVertex3fv(self.points[1])
+    glVertex3fv(self.points[2])
+    glVertex3fv(self.points[3])
+
     glEnd()
->>>>>>> master
-    
+
+

@@ -42,22 +42,17 @@ if __name__ == "__main__":
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     
     # square.draw()
+    square.drawTrans2d(0.1,0)
     # rectangle.draw()
     # triangle.draw()
     #circle.draw()
-<<<<<<< Updated upstream
     #line.draw()
     #reta.draw()
     #reta2.draw()
-    circle3d.draw()
-<<<<<<< HEAD
-=======
-=======
-    line.draw()
+    # circle3d.draw()
+
+    # line.draw()
     #reta.draw()
     #reta2.draw()
->>>>>>> Stashed changes
->>>>>>> master
-
     pygame.display.flip()
     pygame.time.wait(10)
