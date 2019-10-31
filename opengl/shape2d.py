@@ -67,6 +67,13 @@ class Square():
     self.points = self._create_points()  
     self.draw()
 
+  def drawRot2d(self,angle):
+    self.x = self.x*math.cos(angle) - self.y*math.sin(angle)
+    self.y = self.x*math.sin(angle) + self.y*math.cos(angle)
+    self.points = self._create_points()  
+    self.draw()
+    
+
 # Classe do retangulo
 class Rectangle():
   def __init__(self,x,y,width,height):

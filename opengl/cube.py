@@ -42,7 +42,8 @@ if __name__ == "__main__":
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     
     # square.draw()
-    square.drawTrans2d(0.1,0)
+    # square.drawTrans2d(0.1,0)
+    square.drawRot2d(0.1)
     # rectangle.draw()
     # triangle.draw()
     #circle.draw()
