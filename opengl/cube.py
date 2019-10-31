@@ -43,7 +43,8 @@ if __name__ == "__main__":
     
     # square.draw()
     # square.drawTrans2d(0.1,0)
-    square.drawRot2d(0.1)
+    square.drawScale2d(1.005)
+    # square.drawRot2d(0.1)
     # rectangle.draw()
     # triangle.draw()
     #circle.draw()

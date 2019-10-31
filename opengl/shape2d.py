@@ -61,13 +61,13 @@ class Square():
     self.points = self._create_points()  
     self.draw()
 
-  def drawsScale2d(self,tx,ty):
-    self.x *= tx
-    self.y *= ty
+  def drawScale2d(self,ts):
+    self.width *= ts
     self.points = self._create_points()  
     self.draw()
 
   def drawRot2d(self,angle):
+    
     self.x = self.x*math.cos(angle) - self.y*math.sin(angle)
     self.y = self.x*math.sin(angle) + self.y*math.cos(angle)
     self.points = self._create_points()  
