@@ -49,7 +49,9 @@ if __name__ == "__main__":
     # square.drawTrans2d(0.1,0)
     #square.drawRot2d(0.1)
     # rectangle.draw()
+    # rectangle.drawTrans2d(0.1,0)
     # triangle.draw()
+    triangle.drawTrans2d(0.1,0)
     #circle.draw()
     #line.draw()
     #reta.draw()
@@ -59,10 +61,10 @@ if __name__ == "__main__":
     # line.draw()
     #reta.draw()
     #reta2.draw()
-    #paralelepipedo3D.draw()
-    pyramid3D.draw()
+    # paralelepipedo3D.draw()
+    #pyramid3D.draw()
 
-    glRotate(0.4, 1, 1 ,1)
+    # glRotate(0.4, 1, 1 ,1)
 
     pygame.display.flip()
     pygame.time.wait(10)
