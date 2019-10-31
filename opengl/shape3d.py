@@ -96,51 +96,15 @@ class Circle3D():
 
     
 class Cube():
-  def __init__(self,x,y,z,lado):
-    self.x = x
-    self.y = y
-    self.z = z
-    self.lado = lado
-    self.points = self.createPoints()
-  
-  def createPoints(self):
-    point_list = []
-    point_list.append(((self.x + self.lado),(self.y + self.lado),(self.z + self.lado))) #0
-    point_list.append(((self.x - self.lado),(self.y + self.lado),(self.z + self.lado))) #1
-    point_list.append(((self.x + self.lado),(self.y + self.lado),(self.z - self.lado))) #2
-    point_list.append(((self.x - self.lado),(self.y + self.lado),(self.z - self.lado))) #3
-    point_list.append(((self.x + self.lado),(self.y - self.lado),(self.z + self.lado))) #4
-    point_list.append(((self.x - self.lado),(self.y - self.lado),(self.z + self.lado))) #5
-    point_list.append(((self.x + self.lado),(self.y - self.lado),(self.z - self.lado))) #6
-    point_list.append(((self.x - self.lado),(self.y - self.lado),(self.z - self.lado))) #7
-    return point_list
-
-
-
-  def draw(self):
-    glBegin(GL_TRIANGLES)
-
-    glColor(0.0,1.0,0.0)
-    glVertex3fv(self.points[0])
-    glVertex3fv(self.points[1])
-    glVertex3fv(self.points[2])
-
-    glColor(1.0,0.0,0.0)
-    glVertex3fv(self.points[1])
-    glVertex3fv(self.points[2])
-    glVertex3fv(self.points[3])
-
-    glEnd()
-
-class Paralelepipedo3D():
-    def __init__(self,x,y,z, largura, comprimento, altura):
+    def __init__(self,x,y,z, tamanholado):
         self.x = x
         self.y = y
         self.z = z
-        self.largura = largura 
-        self.comprimento = comprimento
-        self.altura = altura
+        self.largura = tamanholado 
+        self.comprimento = tamanholado
+        self.altura = tamanholado
         self.points = self.createPoints()
+
     
     def createPoints(self):
         largura = self.largura
@@ -206,7 +170,147 @@ class Paralelepipedo3D():
         
         return point_list
 
+    def draw(self):
+        glBegin(GL_TRIANGLES)
 
+        glColor(0.0,1.0,0.0)
+        glVertex3fv(self.points[0])
+        glVertex3fv(self.points[1])
+        glVertex3fv(self.points[2])
+
+        glColor(0.0,1.0,0.0)
+        glVertex3fv(self.points[3])
+        glVertex3fv(self.points[4])
+        glVertex3fv(self.points[5])
+
+        glColor(0.0,1.0,0.0)
+        glVertex3fv(self.points[6])
+        glVertex3fv(self.points[7])
+        glVertex3fv(self.points[8])
+
+        glColor(0.0,1.0,0.0)
+        glVertex3fv(self.points[9])
+        glVertex3fv(self.points[10])
+        glVertex3fv(self.points[11])
+
+        glColor(0.0,1.0,0.0)
+        glVertex3fv(self.points[12])
+        glVertex3fv(self.points[13])
+        glVertex3fv(self.points[14])
+
+        glColor(0.0,1.0,0.0)
+        glVertex3fv(self.points[15])
+        glVertex3fv(self.points[16])
+        glVertex3fv(self.points[17])
+
+        glColor(0.0,1.0,0.0)
+        glVertex3fv(self.points[18])
+        glVertex3fv(self.points[19])
+        glVertex3fv(self.points[20])
+
+        glColor(0.0,1.0,0.0)
+        glVertex3fv(self.points[21])
+        glVertex3fv(self.points[22])
+        glVertex3fv(self.points[23])
+
+        glColor(0.0,1.0,0.0)
+        glVertex3fv(self.points[24])
+        glVertex3fv(self.points[25])
+        glVertex3fv(self.points[26])
+
+        glColor(0.0,1.0,0.0)
+        glVertex3fv(self.points[27])
+        glVertex3fv(self.points[28])
+        glVertex3fv(self.points[29])
+
+        glColor(0.0,1.0,0.0)
+        glVertex3fv(self.points[30])
+        glVertex3fv(self.points[31])
+        glVertex3fv(self.points[32])
+
+        glColor(0.0,1.0,0.0)
+        glVertex3fv(self.points[33])
+        glVertex3fv(self.points[34])
+        glVertex3fv(self.points[35])
+
+
+
+        glEnd()
+
+class Paralelepipedo3D():
+    def __init__(self,x,y,z, largura, comprimento, altura):
+        self.x = x
+        self.y = y
+        self.z = z
+        self.largura = largura 
+        self.comprimento = comprimento
+        self.altura = altura
+        self.points = self.createPoints()
+
+    
+    def createPoints(self):
+        largura = self.largura
+        altura = self.altura
+        comprimento = self.comprimento 
+
+        point_list = []
+        #lado de baixo
+        point_list.append(((self.x),(self.y),(self.z))) #1
+        point_list.append(((self.x+largura),(self.y),(self.z))) #2
+        point_list.append(((self.x),(self.y),(self.z+comprimento))) #3
+
+        point_list.append(((self.x+largura),(self.y),(self.z))) #2
+        point_list.append(((self.x),(self.y),(self.z+comprimento))) #3
+        point_list.append(((self.x+largura),(self.y),(self.z+comprimento))) #4
+
+        #lado de cima
+        point_list.append(((self.x),(self.y+altura),(self.z))) #5
+        point_list.append(((self.x+largura),(self.y+altura),(self.z))) #6
+        point_list.append(((self.x),(self.y+altura),(self.z+comprimento))) #7
+
+        point_list.append(((self.x+largura),(self.y+altura),(self.z))) #6
+        point_list.append(((self.x),(self.y+altura),(self.z+comprimento))) #7
+        point_list.append(((self.x+largura),(self.y+altura),(self.z+comprimento))) #8
+
+        #lado da esquerda
+        point_list.append(((self.x),(self.y),(self.z))) #1
+        point_list.append(((self.x),(self.y),(self.z+comprimento))) #3
+        point_list.append(((self.x),(self.y+altura),(self.z))) #5
+
+        point_list.append(((self.x),(self.y),(self.z+comprimento))) #3
+        point_list.append(((self.x),(self.y+altura),(self.z))) #5
+        point_list.append(((self.x),(self.y+altura),(self.z+comprimento))) #7
+
+        #lado de tras
+
+        point_list.append(((self.x),(self.y),(self.z))) #1
+        point_list.append(((self.x+largura),(self.y),(self.z))) #2
+        point_list.append(((self.x),(self.y+altura),(self.z))) #5
+
+        point_list.append(((self.x+largura),(self.y),(self.z))) #2
+        point_list.append(((self.x),(self.y+altura),(self.z))) #5
+        point_list.append(((self.x+largura),(self.y+altura),(self.z))) #6
+
+        #lado da direita
+        point_list.append(((self.x+largura),(self.y),(self.z))) #2
+        point_list.append(((self.x+largura),(self.y),(self.z+comprimento))) #4
+        point_list.append(((self.x+largura),(self.y+altura),(self.z))) #6
+
+        point_list.append(((self.x+largura),(self.y),(self.z+comprimento))) #4
+        point_list.append(((self.x+largura),(self.y+altura),(self.z))) #6
+        point_list.append(((self.x+largura),(self.y+altura),(self.z+comprimento))) #8
+
+        #lado da frente
+        point_list.append(((self.x),(self.y),(self.z+comprimento))) #3
+        point_list.append(((self.x+largura),(self.y),(self.z+comprimento))) #4
+        point_list.append(((self.x),(self.y+altura),(self.z+comprimento))) #7
+
+        point_list.append(((self.x+largura),(self.y),(self.z+comprimento))) #4
+        point_list.append(((self.x),(self.y+altura),(self.z+comprimento))) #7
+        point_list.append(((self.x+largura),(self.y),(self.z+comprimento))) #8
+
+        
+        return point_list
 
     def draw(self):
         glBegin(GL_TRIANGLES)
